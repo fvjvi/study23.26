@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+    <title>Document</title>
+    <style>
+        body,html{
+            -webkit-touch-callout:none;
+            -webkit-user-select:none;
+            -khtml-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            /* pointer-events: none; */
+            user-select:none;
+            -o-user-select:none;
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            background-color: #9d88d3f5;
+        }
+        p{
+            margin: 0;
+            position: relative;
+            font-size: 2em;
+            text-align: center;
+            top: 10vh;
+        }
+        #onebox{
+            width: 100vw;
+            height: 100vh;
+        }
+        #onebox-first{
+            margin: 0 auto;
+            width: 80%;
+            height: 50%;
+            position: relative;
+            top: 5vh;
+        }
+        #onebox-first-img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        #onebox-first-video{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: url(video/hertaa.gif);
+            background-size: cover;
+            display: none;
+        }
+        #onebox-second{
+            width: 40%;
+            height: 30%;
+            top: 17vh;
+            left: 27vw;
+            background-color: black;
+            position: absolute;
+            border-radius: 50%;
+        }
+        #onebox-third{
+            width: 30%;
+            height: 20%;
+            left: 25vw;
+            top: 30px;
+            background-color: white;
+            position: absolute;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="onebox">
+        <div id="onebox-first">
+            <img id="onebox-first-img" src="img/favicon.png" alt="">
+            <div id="onebox-first-video"></div>
+            <div id="onebox-second"></div>
+            <div id="onebox-third"></div>
+        </div>
+        <p id="tx"></p>
+    </div>
+</body>
+<script>
+    var oneBoxImg = document.getElementById('onebox-first-img');
+    var oneBoxFirst = document.getElementById('onebox-first');
+    var oneBoxVideo = document.getElementById('onebox-first-video');
+    var oneBoxSecond = document.getElementById('onebox-second');
+    var oneBoxThird = document.getElementById('onebox-third');
+    var tx = document.getElementById('tx');
+    oneBoxThird.addEventListener('touchstart',function(e){
+        oneBoxImg.style.display = 'none';
+        oneBoxVideo.style.display = 'block';
+    })
+    oneBoxThird.addEventListener('touchend',function(e){
+        oneBoxImg.style.display = 'block';
+        oneBoxVideo.style.display = 'none';
+    })
+    oneBoxSecond.onclick = function(e){
+        tx.innerHTML = '不要碰我！';
+        setTimeout(() => {
+            tx.innerHTML = '';
+        }, 2000);
+    }
+</script>
+</html>
