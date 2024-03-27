@@ -17,6 +17,7 @@
             -o-user-select:none;
             margin: 0px;
             padding: 0px;
+            height: 100vh;
         }
         body{
             background-color: #9d88d3f5;
@@ -29,8 +30,15 @@
             top: 10vh;
         }
         #onebox{
+            position: relative;
             width: 100vw;
             height: 100vh;
+            -webkit-transform:scale(1,1); 
+            transform:scale(1,1); 
+        }
+        #onebox.move{
+            -webkit-transform:scale(0,0);
+            transform:scale(0,0);
         }
         #onebox-first{
             margin: 0 auto;
@@ -57,6 +65,7 @@
             height: 30%;
             top: 17vh;
             left: 27vw;
+            background-color: pink;
             position: absolute;
             border-radius: 50%;
         }
@@ -65,8 +74,35 @@
             height: 20%;
             left: 25vw;
             top: 30px;
+            background-color: white;
             position: absolute;
             border-radius: 50%;
+        }
+        #onebox-fourth{
+            width: 30%;
+            height: 20%;
+            right: 0vw;
+            top: 0px;
+            background-color: yellow;
+            position: absolute;
+            border-radius: 50%;
+        }
+        #twobox{
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            top: -100vh;
+            background-color: black;
+            -webkit-transform:scale(0,0); 
+            transform:scale(0,0);
+        }
+        #twobox.move{
+            -webkit-transform:scale(1,1);
+            transform:scale(1,1);
+        }
+        #onebox,#twobox{
+            -webkit-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
         }
     </style>
 </head>
@@ -77,10 +113,13 @@
             <div id="onebox-first-video"></div>
             <div id="onebox-second"></div>
             <div id="onebox-third"></div>
+            <div id="onebox-fourth"></div>
         </div>
         <p id="tx"></p>
     </div>
+    <div id="twobox"></div>
 </body>
+<script src="jquery-3.4.1.min.js"></script>
 <script>
     var oneBoxImg = document.getElementById('onebox-first-img');
     var oneBoxFirst = document.getElementById('onebox-first');
@@ -88,6 +127,18 @@
     var oneBoxSecond = document.getElementById('onebox-second');
     var oneBoxThird = document.getElementById('onebox-third');
     var tx = document.getElementById('tx');
+    $(document).ready(function(){
+        $('#onebox-fourth').click(function(e){
+            e.preventDefault();
+            $('#onebox').toggleClass('move');
+            $('#twobox').toggleClass('move');
+        });
+        $('#twobox').click(function(e){
+            e.preventDefault();
+            $('#onebox').toggleClass('move');
+            $('#twobox').toggleClass('move');
+        });
+    });
     oneBoxThird.addEventListener('touchstart',function(e){
         oneBoxImg.style.display = 'none';
         oneBoxVideo.style.display = 'block';
