@@ -127,6 +127,7 @@
     var oneBoxSecond = document.getElementById('onebox-second');
     var oneBoxThird = document.getElementById('onebox-third');
     var tx = document.getElementById('tx');
+    var startX, startY;
     $(document).ready(function(){
         $('#onebox-fourth').click(function(e){
             e.preventDefault();
@@ -142,10 +143,21 @@
     oneBoxThird.addEventListener('touchstart',function(e){
         oneBoxImg.style.display = 'none';
         oneBoxVideo.style.display = 'block';
+        startX = e.targetTouches[0].clientX;
+        startY = e.targetTouches[0].clientY;
+        e.preventDefault();
     })
     oneBoxThird.addEventListener('touchend',function(e){
         oneBoxImg.style.display = 'block';
         oneBoxVideo.style.display = 'none';
+        var endX = e.changedTouches[0].clientX;
+        var endY = e.changedTouches[0].clientY;
+        if (Math.abs(endX - startX) > 15 || Math.abs(endY - startY) > 15) {
+        clearInterval(audioplay);
+        document.getElementById("t").innerHTML = "";
+        alert("请不要拖动屏幕");
+        return;
+        }
     })
     oneBoxSecond.onclick = function(e){
         tx.innerHTML = '不要碰我！';
