@@ -17,6 +17,7 @@
             -o-user-select:none;
             margin: 0px;
             padding: 0px;
+            height: 100vh;
         }
         body{
             background-color: #9d88d3f5;
@@ -64,7 +65,7 @@
             height: 30%;
             top: 17vh;
             left: 27vw;
-            background-color: black;
+            background-color: pink;
             position: absolute;
             border-radius: 50%;
         }
@@ -126,8 +127,8 @@
     var oneBoxSecond = document.getElementById('onebox-second');
     var oneBoxThird = document.getElementById('onebox-third');
     var tx = document.getElementById('tx');
-
-    $('#onebox-fourth').click(function(e){
+    $(document).ready(function(){
+        $('#onebox-fourth').click(function(e){
             e.preventDefault();
             $('#onebox').toggleClass('move');
             $('#twobox').toggleClass('move');
@@ -137,9 +138,7 @@
             $('#onebox').toggleClass('move');
             $('#twobox').toggleClass('move');
         });
-
-
-
+    });
     oneBoxThird.addEventListener('touchstart',function(e){
         oneBoxImg.style.display = 'none';
         oneBoxVideo.style.display = 'block';
