@@ -116,34 +116,34 @@
             animation: roll 60s infinite linear;
         }
         .wrap>div{
-            width: 120px;
-            height: 80px;
+            width: 160px;
+            height: 100px;
             position: absolute;
             background-size: 120px 80px;
             transition: all 1s;
         }
         .one{
-            transform: rotateY(0deg) translateZ(103px);
+            transform: rotateY(0deg) translateZ(160px);
             background-image: url(img/card_cn.jpg);
         }
         .two{
-            transform: rotateY(120deg) translateZ(103px);
+            transform: rotateY(120deg) translateZ(160px);
             background-image: url(img/card_en.jpg);
         }
         .three{
-            transform: rotateY(-120deg) translateZ(103px);
+            transform: rotateY(-120deg) translateZ(160px);
             background-image: url(img/card_id.jpg);
         }
         .four{
-            transform: rotateY(120deg) translateZ(-103px);
+            transform: rotateY(120deg) translateZ(-160px);
             background-image: url(img/card_ja.jpg);
         }
         .five{
-            transform: rotateY(-120deg) translateZ(-103px);
+            transform: rotateY(-120deg) translateZ(-160px);
             background-image: url(img/card_kr.jpg);
         }
         .six{
-            transform: translateZ(-103px);
+            transform: translateZ(-160px);
             background-image: url(img/card_pt.jpg);
         }
         #lamp{
@@ -204,7 +204,6 @@
     var twoBoxFirst = document.getElementById('twobox-first');
     var tx = document.getElementById('tx');
     var startX, startY, endX, endY;
-
     var LampOne = document.querySelector(".one");
     var LampTwo = document.querySelector(".two");
     var LampThree = document.querySelector(".three");
@@ -214,15 +213,18 @@
     var Lamp = document.querySelectorAll("#lamp");
     let isEnlarged = false;
     var timeoutId;
-
     $(document).ready(function(){
         $('#onebox-fourth').click(function(e){
             e.preventDefault();
+            oneBoxFour.style.display = 'none';
+            twoBoxFirst.style.display = 'block';
             $('#onebox').toggleClass('move');
             $('#twobox').toggleClass('move');
         });
         $('#twobox-first').click(function(e){
             e.preventDefault();
+            twoBoxFirst.style.display = 'none';
+            oneBoxFour.style.display = 'block';
             $('#onebox').toggleClass('move');
             $('#twobox').toggleClass('move');
         });
@@ -251,21 +253,17 @@
             tx.innerHTML = '';
         }, 2000);
     }
-
-
-
-
     var fun = function(){
-        LampOne.setAttribute("style", "transform:translateZ(103px); border-radius: 0; box-shadow: 0");
-        LampTwo.setAttribute("style", "rotateY(120deg) translateZ(103px); border-radius: 0; box-shadow: 0");
-        LampThree.setAttribute("style", "rotateY(-120deg) translateZ(103px); border-radius: 0; box-shadow: 0");
-        LampFour.setAttribute("style", "rotateY(120deg) translateZ(-103px); border-radius: 0; box-shadow: 0");
-        LampFive.setAttribute("style", "rotateY(-120deg) translateZ(-103px); border-radius: 0; box-shadow: 0");
-        LampSix.setAttribute("style", "translateZ(-103px); border-radius: 0; box-shadow: 0");
+        LampOne.setAttribute("style", "transform:translateZ(160px); border-radius: 0; box-shadow: 0");
+        LampTwo.setAttribute("style", "rotateY(120deg) translateZ(160px); border-radius: 0; box-shadow: 0");
+        LampThree.setAttribute("style", "rotateY(-120deg) translateZ(160px); border-radius: 0; box-shadow: 0");
+        LampFour.setAttribute("style", "rotateY(120deg) translateZ(-160px); border-radius: 0; box-shadow: 0");
+        LampFive.setAttribute("style", "rotateY(-120deg) translateZ(-160px); border-radius: 0; box-shadow: 0");
+        LampSix.setAttribute("style", "translateZ(-130px); border-radius: 0; box-shadow: 0");
     }
     LampOne.onclick = function(){
         if (!isEnlarged) {
-            LampOne.setAttribute("style", "transform: translateZ(113px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            LampOne.setAttribute("style", "transform: translateZ(200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
             isEnlarged = true;
         } else {
             fun();
@@ -279,7 +277,7 @@
     }
     LampTwo.onclick = function(){
         if (!isEnlarged) {
-            LampTwo.setAttribute("style", "transform: rotateY(120deg) translateZ(113px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            LampTwo.setAttribute("style", "transform: rotateY(120deg) translateZ(200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
             isEnlarged = true;
         } else {
             fun();         
@@ -293,7 +291,7 @@
     }
     LampThree.onclick = function(){
         if (!isEnlarged) {
-            LampThree.setAttribute("style", "transform: rotateY(-120deg) translateZ(113px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            LampThree.setAttribute("style", "transform: rotateY(-120deg) translateZ(200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
             isEnlarged = true;
         } else {
             fun();
@@ -307,7 +305,7 @@
     }
     LampFour.onclick = function(){
         if (!isEnlarged) {
-            LampFour.setAttribute("style", "transform: rotateY(120deg) translateZ(-113px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            LampFour.setAttribute("style", "transform: rotateY(120deg) translateZ(-200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
             isEnlarged = true;
         } else {
             fun();
@@ -321,7 +319,7 @@
     }
     LampFive.onclick = function(){
         if (!isEnlarged) {
-            LampFive.setAttribute("style", "transform: rotateY(-120deg) translateZ(-113px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            LampFive.setAttribute("style", "transform: rotateY(-120deg) translateZ(-200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
             isEnlarged = true;
         } else {
             fun();
@@ -335,7 +333,7 @@
     }
     LampSix.onclick = function(){
         if (!isEnlarged) {
-            LampSix.setAttribute("style", "transform: translateZ(-113px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            LampSix.setAttribute("style", "transform: translateZ(-200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
             isEnlarged = true;
         } else {
             fun();
