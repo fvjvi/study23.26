@@ -1,2 +1,2 @@
 # study23.26
-study
+响应式web
