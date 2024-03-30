@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
     <!-- This job comes from a study project called Fijiv in Gittub as PengPeng's Learning Responsive Web Job -->
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <title>Document</title>
+    <title>3.26作业</title>
     <style>
         body,html{
             -webkit-touch-callout:none;
@@ -151,6 +151,13 @@
         #lamp{
             pointer-events: auto;
         }
+        #twobox-second{
+            position: relative;
+            width: 100%;
+            height: 29%;
+            top: 40vh;
+            margin: 0;
+        }
         @keyframes roll {
             0%{
                 transform: rotateY(360deg);
@@ -173,6 +180,7 @@
 <body>
     <div id="onebox">
         <div id="onebox-first">
+            <audio id="audio" src="audio/转圈圈.mp3" loop="loop"></audio>
             <img id="onebox-first-img" src="img/favicon.png" alt="">
             <div id="onebox-first-video"></div>
             <div id="onebox-second"></div>
@@ -192,6 +200,7 @@
                 <div id="lamp" class="five"></div>
                 <div id="lamp" class="six"></div>
             </div>
+            <div id="twobox-second"></div>
         </div>
     </div>
 </body>
@@ -204,6 +213,7 @@
     var oneBoxThird = document.getElementById('onebox-third');
     var oneBoxFour = document.getElementById('onebox-fourth');
     var twoBoxFirst = document.getElementById('twobox-first');
+    var audio = document.getElementById('audio');
     var tx = document.getElementById('tx');
     var startX, startY, endX, endY;
     var LampOne = document.querySelector(".one");
@@ -213,6 +223,7 @@
     var LampFive = document.querySelector(".five");
     var LampSix = document.querySelector(".six");
     var Lamp = document.querySelectorAll("#lamp");
+    var twoboxSecond = document.getElementById('twobox-second');
     let isEnlarged = false;
     var timeoutId;
     $(document).ready(function(){
@@ -235,6 +246,7 @@
         oneBoxImg.style.display = 'none';
         oneBoxVideo.style.display = 'block';
         oneBoxFour.style.display = 'none';
+        audio.play();
         startX = e.targetTouches[0].clientX;
         startY = e.targetTouches[0].clientY;
         e.preventDefault();
@@ -243,6 +255,7 @@
         oneBoxImg.style.display = 'block';
         oneBoxVideo.style.display = 'none';
         oneBoxFour.style.display = 'block';
+        audio.pause();
         var endX = e.changedTouches[0].clientX;
         var endY = e.changedTouches[0].clientY;
         if (Math.abs(endX - startX) > 15 || Math.abs(endY - startY) > 15) {4
@@ -266,84 +279,102 @@
     LampOne.onclick = function(){
         if (!isEnlarged) {
             LampOne.setAttribute("style", "transform: translateZ(200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            twoboxSecond.setAttribute("style", "background:url(img/card_cn.jpg); background-size: cover;");
             isEnlarged = true;
         } else {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;transform: initial;");
             isEnlarged = false;
         }
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }, 2000);
     }
     LampTwo.onclick = function(){
         if (!isEnlarged) {
             LampTwo.setAttribute("style", "transform: rotateY(120deg) translateZ(200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            twoboxSecond.setAttribute("style", "background:url(img/card_en.jpg); background-size: cover;");
             isEnlarged = true;
         } else {
             fun();         
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }, 2000);
     }
     LampThree.onclick = function(){
         if (!isEnlarged) {
             LampThree.setAttribute("style", "transform: rotateY(-120deg) translateZ(200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            twoboxSecond.setAttribute("style", "background:url(img/card_id.jpg); background-size: cover;");
             isEnlarged = true;
         } else {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }, 2000);
     }
     LampFour.onclick = function(){
         if (!isEnlarged) {
             LampFour.setAttribute("style", "transform: rotateY(120deg) translateZ(-200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            twoboxSecond.setAttribute("style", "background:url(img/card_ja.jpg); background-size: cover;");
             isEnlarged = true;
         } else {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }, 2000);
     }
     LampFive.onclick = function(){
         if (!isEnlarged) {
             LampFive.setAttribute("style", "transform: rotateY(-120deg) translateZ(-200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            twoboxSecond.setAttribute("style", "background:url(img/card_kr.jpg); background-size: cover;");
             isEnlarged = true;
         } else {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }, 2000);
     }
     LampSix.onclick = function(){
         if (!isEnlarged) {
             LampSix.setAttribute("style", "transform: translateZ(-200px) scale(1.5); border-radius: 15%; box-shadow: 0 0 30px rgba(3, 197, 197, 0.7)");
+            twoboxSecond.setAttribute("style", "background:url(img/card_pt.jpg); background-size: cover;");
             isEnlarged = true;
         } else {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
             fun();
+            twoboxSecond.setAttribute("style", "background:none;");
             isEnlarged = false;
         }, 2000);
     }
