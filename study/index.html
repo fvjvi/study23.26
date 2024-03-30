@@ -248,6 +248,7 @@
         });
     });
     oneBoxThird.addEventListener('touchstart',function(e){
+        audio.currentTime = 0;
         oneBoxImg.style.display = 'none';
         audio.play();
         oneBoxVideo.style.display = 'block';
