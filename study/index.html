@@ -258,8 +258,9 @@
         audio.pause();
         var endX = e.changedTouches[0].clientX;
         var endY = e.changedTouches[0].clientY;
-        if (Math.abs(endX - startX) > 15 || Math.abs(endY - startY) > 15) {4
-        return;
+        if (Math.abs(endX - startX) > 15 || Math.abs(endY - startY) > 15) {
+            alert("不要乱动呀！");
+            return;
         }
     })
     oneBoxSecond.onclick = function(e){
