@@ -91,6 +91,25 @@
             position: absolute;
             border-radius: 50%;
         }
+        #onebox-fifth{
+            width: 120px;
+            height: 120px;
+            left: 25vw;
+            top: 35vh;
+            /* background-color: yellow; */
+            border-radius: 50%;
+            position: absolute;
+        }
+        #onebox-sixth{
+            width: 380px;
+            height: 380px;
+            left: -8vw;
+            top: 5vh;
+            background: url(video/1711877164693.gif);
+            display: none;
+            background-size: cover;
+            position: absolute;
+        }
         #twobox{
             position: relative;
             width: 100%;
@@ -185,6 +204,8 @@
             <div id="onebox-second"></div>
             <div id="onebox-third"></div>
             <div id="onebox-fourth"></div>
+            <div id="onebox-fifth"></div>
+            <div id="onebox-sixth"></div>
         </div>
         <p id="tx"></p>
     </div>
@@ -211,6 +232,8 @@
     var oneBoxSecond = document.getElementById('onebox-second');
     var oneBoxThird = document.getElementById('onebox-third');
     var oneBoxFour = document.getElementById('onebox-fourth');
+    var oneBoxFifth = document.getElementById('onebox-fifth');
+    var oneBoxSixth = document.getElementById('onebox-sixth');
     var twoBoxFirst = document.getElementById('twobox-first');
     var tx = document.getElementById('tx');
     var startX, startY, endX, endY;
@@ -270,10 +293,20 @@
         }
     })
     oneBoxSecond.onclick = function(e){
-        tx.innerHTML = '不要碰我！';
+        tx.innerHTML = '不要碰我！(* ￣︿￣)';
         setTimeout(() => {
             tx.innerHTML = '';
-        }, 2000);
+        }, 3000);
+    }
+    oneBoxFifth.onclick = function(e){
+        tx.innerHTML = '冷静呀！ヽ(≧□≦)ノ';
+        oneBoxImg.style.display = 'none';
+        oneBoxSixth.style.display = 'block';
+        setTimeout(() => {
+            tx.innerHTML = '';
+            oneBoxImg.style.display = 'block';
+            oneBoxSixth.style.display = 'none';
+        }, 2500);
     }
     var fun = function(){
         LampOne.setAttribute("style", "transform:translateZ(160px); border-radius: 0; box-shadow: 0");
