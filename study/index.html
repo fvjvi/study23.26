@@ -301,11 +301,13 @@
     oneBoxFifth.onclick = function(e){
         tx.innerHTML = '冷静呀！ヽ(≧□≦)ノ';
         oneBoxImg.style.display = 'none';
+        oneBoxFour.style.display = 'none';
         oneBoxSixth.style.display = 'block';
         setTimeout(() => {
             tx.innerHTML = '';
             oneBoxImg.style.display = 'block';
             oneBoxSixth.style.display = 'none';
+            oneBoxFour.style.display = 'block';
         }, 2500);
     }
     var fun = function(){
