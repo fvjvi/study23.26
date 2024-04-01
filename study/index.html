@@ -29,18 +29,18 @@
             position: relative;
             font-size: 2em;
             text-align: center;
-            top: 10vh;
+            top: 120px;
         }
         #onebox{
             position: relative;
             width: 100%;
             height: 100%;
-            -webkit-transform:scale(1,1); 
-            transform:scale(1,1); 
+            -webkit-transform:scale(0,0); 
+            transform:scale(0,0); 
         }
         #onebox.move{
-            -webkit-transform:scale(0,0);
-            transform:scale(0,0);
+            -webkit-transform:scale(1,1);
+            transform:scale(1,1);
         }
         #onebox-first,#twobox-big{
             margin: 0 auto;
@@ -83,7 +83,7 @@
             position: absolute;
             border-radius: 50%;
         }
-        #onebox-fourth,#twobox-first{
+        #onebox-fourth{
             width: 80px;
             height: 80px;
             right: 0vw;
@@ -128,12 +128,12 @@
             width: 100%;
             height: 100%;
             top: -100vh;
-            -webkit-transform:scale(0,0); 
-            transform:scale(0,0);
+            -webkit-transform:scale(1,1); 
+            transform:scale(1,1);
         }
         #twobox.move{
-            -webkit-transform:scale(1,1);
-            transform:scale(1,1);
+            -webkit-transform:scale(0,0);
+            transform:scale(0,0);
         }
         #onebox,#twobox{
             -webkit-transition: all 1.5s ease-in-out;
@@ -212,6 +212,7 @@
 <body>
     <div id="onebox">
         <div id="onebox-first">
+            <audio src="audio/转圈圈.mp3" id="audio" onclick="audio.play()" loop="loop"></audio>
             <img id="onebox-first-img" src="img/favicon.png" alt="">
             <div id="onebox-first-video"></div>
             <div id="onebox-second"></div>
@@ -225,7 +226,6 @@
     </div>
     <div id="twobox">
         <div id="twobox-big">
-            <div id="twobox-first"></div>
             <div class="wrap">
                 <div id="lamp" class="one"></div>
                 <div id="lamp" class="two"></div>
@@ -249,7 +249,7 @@
     var oneBoxFifth = document.getElementById('onebox-fifth');
     var oneBoxSixth = document.getElementById('onebox-sixth');
     var oneBoxSeventh = document.getElementById('onebox-seventh');
-    var twoBoxFirst = document.getElementById('twobox-first');
+    var twoBoxSecond = document.getElementById('twobox-second');
     var tx = document.getElementById('tx');
     var startX, startY, endX, endY;
     var LampOne = document.querySelector(".one");
@@ -262,36 +262,32 @@
     var twoboxSecond = document.getElementById('twobox-second');
     var wrap = document.querySelector('.wrap');
     let isEnlarged = false;
-    var timeoutId,audioplay,timer;
-    var audios =[
-        {path:"audio/转圈圈.mp3"},
-    ];
-    var randomIndex = Math.floor(Math.random() * audios.length);
-    var audioUrl = audios[randomIndex].path;
-    var audio = new Audio(audioUrl);
-    audio.loop = true;
+    var timeoutId,audioplay,timer,say1,say2;
+    var audio = document.getElementById('audio');
     $(document).ready(function(){
         $('#onebox-fourth').click(function(e){
             e.preventDefault();
             oneBoxFour.style.display = 'none';
-            twoBoxFirst.style.display = 'block';
             $('#onebox').toggleClass('move');
             $('#twobox').toggleClass('move');
         });
-        $('#twobox-first').click(function(e){
+        $('#twobox-second').click(function(e){
             e.preventDefault();
-            twoBoxFirst.style.display = 'none';
+            twoboxSecond.style.display = 'none';
             oneBoxFour.style.display = 'block';
             $('#onebox').toggleClass('move');
             $('#twobox').toggleClass('move');
         });
     });
     oneBoxThird.addEventListener('touchstart',function(e){
+        clearInterval(timer);
         timer =setTimeout(function(){
+            audio.pause();
             oneBoxSeventh.style.display = 'block';
             oneBoxImg.style.display = 'none';
             oneBoxFour.style.display = 'none';
             oneBoxVideo.style.display = 'none';
+            return timer = true;
         },5000);
         audio.currentTime = 0;
         oneBoxImg.style.display = 'none';
@@ -303,12 +299,23 @@
         e.preventDefault();
     })
     oneBoxThird.addEventListener('touchend',function(e){
-        clearTimeout(timer);
-        oneBoxImg.style.display = 'block';
-        oneBoxSeventh.style.display = 'none';
-        oneBoxVideo.style.display = 'none';
-        oneBoxFour.style.display = 'block';
-        audio.pause();
+        if(timer == true){
+            setTimeout(() => {
+                clearTimeout(timer);
+                oneBoxImg.style.display = 'block';
+                oneBoxSeventh.style.display = 'none';
+                oneBoxVideo.style.display = 'none';
+                oneBoxFour.style.display = 'block';
+                audio.pause();
+            }, 3000);
+        }else{
+            oneBoxImg.style.display = 'block';
+            oneBoxSeventh.style.display = 'none';
+            oneBoxVideo.style.display = 'none';
+            oneBoxFour.style.display = 'block';
+            oneBoxSeventh.style.display = 'none';
+            audio.pause();
+        }
         var endX = e.changedTouches[0].clientX;
         var endY = e.changedTouches[0].clientY;
         if (Math.abs(endX - startX) > 15 || Math.abs(endY - startY) > 15) {
@@ -317,17 +324,21 @@
         }
     })
     oneBoxSecond.onclick = function(e){
+        clearInterval(say1);
+        clearInterval(say2);
         tx.innerHTML = '不要碰我！(* ￣︿￣)';
-        setTimeout(() => {
+        say1 = setTimeout(() => {
             tx.innerHTML = '';
         }, 2000);
     }
     oneBoxFifth.onclick = function(e){
+        clearInterval(say1);
+        clearInterval(say2);
         tx.innerHTML = '冷静呀！ヽ(≧□≦)ノ';
         oneBoxImg.style.display = 'none';
         oneBoxFour.style.display = 'none';
         oneBoxSixth.style.display = 'block';
-        setTimeout(() => {
+        say2 = setTimeout(() => {
             tx.innerHTML = '';
             oneBoxImg.style.display = 'block';
             oneBoxSixth.style.display = 'none';
