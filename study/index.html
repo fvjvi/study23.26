@@ -264,6 +264,7 @@
     let isEnlarged = false;
     var timeoutId,audioplay,timer,say1,say2;
     var audio = document.getElementById('audio');
+    clearTimeout(timer);
     $(document).ready(function(){
         $('#onebox-fourth').click(function(e){
             e.preventDefault();
@@ -289,7 +290,7 @@
             oneBoxVideo.style.display = 'none';
             return timer = true;
         },5000);
-        audio.currentTime = 0;
+        audio.currentTime = 0; 
         oneBoxImg.style.display = 'none';
         audio.play();
         oneBoxVideo.style.display = 'block';
@@ -326,6 +327,7 @@
     oneBoxSecond.onclick = function(e){
         clearInterval(say1);
         clearInterval(say2);
+        clearTimeout(timer);
         tx.innerHTML = '不要碰我！(* ￣︿￣)';
         say1 = setTimeout(() => {
             tx.innerHTML = '';
@@ -334,6 +336,7 @@
     oneBoxFifth.onclick = function(e){
         clearInterval(say1);
         clearInterval(say2);
+        clearTimeout(timer);
         tx.innerHTML = '冷静呀！ヽ(≧□≦)ノ';
         oneBoxImg.style.display = 'none';
         oneBoxFour.style.display = 'none';
